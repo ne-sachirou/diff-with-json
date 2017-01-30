@@ -24,16 +24,7 @@ cp bin/diff_with_json /usr/local/bin/
 Usage
 --
 ```
-diff-with-json [OPTIONS] FILES...
-
-diff with JSON structure.
-
-Example:
-	diff-with-json -L a.json -L b.json /tmp/a /tmp/b
-
-    -u                               --unified
-    -L LABEL                         --label=LABEL
-    -h, --help                       Show help
+<%= `bin/diff-with-json -h` -%>
 ```
 
 Tips: Use with SVN. `svn diff --diff-cmd diff-with-json`

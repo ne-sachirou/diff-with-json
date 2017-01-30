@@ -14,8 +14,8 @@ module DiffWithJson
         \tdiff-with-json -L a.json -L b.json /tmp/a /tmp/b
 
         HELP
-        parser.on("-u", "") { }
-        parser.on("-L LABEL", "") { |label| labels << label }
+        parser.on("-u", "--unified") { }
+        parser.on("-L LABEL", "--label=LABEL") { |label| labels << label }
         parser.on("-h", "--help", "Show help") do
           puts parser
           exit
