@@ -34,6 +34,8 @@ Example:
     -h, --help                       Show help
 ```
 
+Tips: Use with SVN. `svn diff --diff-cmd diff-with-json`
+
 Development
 --
 ### Pre-requiments
