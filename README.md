@@ -2,6 +2,8 @@ diff-with-json
 ==
 diff with JSON structure.
 
+[![Build Status](https://travis-ci.org/ne-sachirou/diff-with-json.svg?branch=master)](https://travis-ci.org/ne-sachirou/diff-with-json)
+
 Installation
 --
 ### Pre-requiments
