@@ -1,0 +1,13 @@
+name: diff_with_json
+version: 0.1.0
+
+authors:
+  - ne_Sachirou <utakata.c4se@gmail.com>
+
+targets:
+  diff_with_json:
+    main: bin/diff-with-json.cr
+
+crystal: 0.20.5
+
+license: MIT
