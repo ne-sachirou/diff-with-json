@@ -1,6 +1,7 @@
 module DiffWithJson
   class Diff
     def initialize(@labels : Array(String), @files : Array(String))
+      @labels = @files if @labels.empty?
     end
 
     def diff

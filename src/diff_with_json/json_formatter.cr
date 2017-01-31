@@ -11,7 +11,7 @@ module DiffWithJson
     end
 
     private def json?
-      @labels.all? { |f| f =~ /\.json(?:\t\(.+\))?$/ }
+      !@labels.empty? && @labels.all? { |f| f =~ /\.json(?:\t\(.+\))?$/ }
     end
 
     private def format_one(file)

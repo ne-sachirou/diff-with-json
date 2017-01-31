@@ -17,6 +17,16 @@ end
 
 describe DiffWithJson::JsonFormatter do
   describe "#format" do
+    it "dose nothing when labels are empty" do
+      ab = prepare_json_ab
+      ba = prepare_json_ba
+      labels, files = DiffWithJson::JsonFormatter.new([] of String, [ab.path, ba.path]).format
+      labels.should eq [] of String
+      files.should eq [ab.path, ba.path]
+      File.read(files[0]).should eq %({"a":42,"b":57})
+      File.read(files[1]).should eq %({"b":42,"a":57})
+    end
+
     it "dose nothing when labels don't end with json" do
       ab = prepare_json_ab
       ba = prepare_json_ba
