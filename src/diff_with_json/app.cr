@@ -3,27 +3,38 @@ require "option_parser"
 module DiffWithJson
   class App
     def main(argv : Array(String))
+      labels, files = parse_argv argv
+      output_help_then_exit if files.empty?
+      labels, files = JsonFormatter.new(labels, files).format
+      Diff.new(labels, files).diff
+    end
+
+    private def parse_argv(argv)
       labels = [] of String
-      OptionParser.parse! do |parser|
+      @parser = OptionParser.parse(argv) do |parser|
         parser.banner = <<-HELP
         diff-with-json [OPTIONS] FILES...
 
-        diff with JSON structure.
+        \tdiff with JSON structure.
 
         Example:
         \tdiff-with-json -L a.json -L b.json /tmp/a /tmp/b
 
+        Options:
         HELP
-        parser.on("-u", "--unified") { }
-        parser.on("-L LABEL", "--label=LABEL") { |label| labels << label }
-        parser.on("-h", "--help", "Show help") do
+        parser.on("-u", "--unified", "") { }
+        parser.on("-L LABEL", "--label=LABEL", "Use LABEL instead of file name.") { |label| labels << label }
+        parser.on("-h", "--help", "Output this help.") do
           puts parser
           exit
         end
       end
-      files = ARGV.first 2
-      labels, files = JsonFormatter.new(labels, files).format
-      Diff.new(labels, files).diff
+      {labels, argv.first(2)}
+    end
+
+    private def output_help_then_exit
+      puts @parser if @parser
+      exit
     end
   end
 end

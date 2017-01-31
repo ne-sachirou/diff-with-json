@@ -26,14 +26,15 @@ Usage
 ```
 diff-with-json [OPTIONS] FILES...
 
-diff with JSON structure.
+	diff with JSON structure.
 
 Example:
 	diff-with-json -L a.json -L b.json /tmp/a /tmp/b
 
-    -u                               --unified
-    -L LABEL                         --label=LABEL
-    -h, --help                       Show help
+Options:
+    -u, --unified                    
+    -L LABEL, --label=LABEL          Use LABEL instead of file name.
+    -h, --help                       Output this help.
 ```
 
 Tips: Use with SVN. `svn diff --diff-cmd diff-with-json`
