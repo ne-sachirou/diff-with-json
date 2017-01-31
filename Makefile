@@ -13,3 +13,4 @@ fix: ## Fix lint automatically
 test: ## Test
 	find src spec -type f -name '*.cr' | xargs -L1 -P4 crystal tool format --check
 	crystal spec
+	crystal build bin/diff-with-json.cr -o bin/diff-with-json

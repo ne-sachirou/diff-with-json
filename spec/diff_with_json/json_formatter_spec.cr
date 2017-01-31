@@ -50,8 +50,8 @@ describe DiffWithJson::JsonFormatter do
     it "formats json when both labels are svn-diff style json file name" do
       ab = prepare_json_ab
       ba = prepare_json_ba
-      labels, files = DiffWithJson::JsonFormatter.new(["ab.json\t(revision 111)", "ab.json\t(revision 112)"], [ab.path, ba.path]).format
-      labels.should eq ["ab.json\t(revision 111)", "ab.json\t(revision 112)"]
+      labels, files = DiffWithJson::JsonFormatter.new(["ab.json\t(revision 111)", "ab.json\t(working copy)"], [ab.path, ba.path]).format
+      labels.should eq ["ab.json\t(revision 111)", "ab.json\t(working copy)"]
       files.should_not eq [ab.path, ba.path]
       File.read(files[0]).should eq %({\n  "a": 42,\n  "b": 57\n}\n)
       File.read(files[1]).should eq %({\n  "a": 57,\n  "b": 42\n}\n)
