@@ -1,4 +1,5 @@
 /doc/
 /lib/
-/bin/
+/bin/*
+!/bin/*.cr
 /.shards/
