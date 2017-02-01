@@ -7,18 +7,19 @@ diff with JSON structure.
 Installation
 --
 ### Pre-requiments
-- [jq](https://stedolan.github.io/jq/)
+- [Crystal](https://crystal-lang.org/)
 - diff or [colordiff](http://www.colordiff.org/)
+- [jq](https://stedolan.github.io/jq/)
 
 ### Download a binary
 Download a binary from [releases](https://github.com/ne-sachirou/diff-with-json/releases) and put it into PATH.
 
 ### Build from source
 ```sh
-git clone --depth=1 git@github.com:ne-sachirou/diff_with_json.git
-cd diff_with_json
+git clone --depth=1 git@github.com:ne-sachirou/diff-with-json.git
+cd diff-with-json
 make build
-cp bin/diff_with_json /usr/local/bin/
+cp bin/diff-with-json /usr/local/bin/
 ```
 
 Usage
@@ -44,12 +45,18 @@ Development
 ### Pre-requiments
 - [Crystal](https://crystal-lang.org/)
 
+### Tests
+Run `make test` before commit.
+
+### Editing README
+Please Edit src/README.md.ecr then `make build`.
+
 Contributing
 --
-1. Fork it ( https://github.com/ne-sachirou/diff_with_json/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
+1. Fork it ( https://github.com/ne-sachirou/diff-with-json/fork )
+2. Create your feature branch (git checkout -b my_new_feature)
 3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
+4. Push to the branch (git push origin my_new_feature)
 5. Create a new Pull Request
 
 Contributors
