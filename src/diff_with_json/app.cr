@@ -5,8 +5,7 @@ module DiffWithJson
     def main(argv : Array(String))
       labels, files = parse_argv argv
       output_help_then_exit if files.empty?
-      labels, files = JsonFormatter.new(labels, files).format
-      Diff.new(labels, files).diff
+      JsonFormatter.new(labels, files).with_formatted { |files| Diff.new(labels, files).diff }
     end
 
     private def parse_argv(argv)
