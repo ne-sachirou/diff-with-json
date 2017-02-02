@@ -1,0 +1,2 @@
+FROM alpine:latest
+ADD bin/diff-with-json-linux-x86_64 /usr/local/bin/diff-with-json
