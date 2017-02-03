@@ -10,8 +10,9 @@ build: ## Build a release binary
 
 build_darwin:
 	crystal deps --production
-	crystal build --release -o bin/diff-with-json bin/diff-with-json.cr
+	bash -eux build.darwin-x86_64.sh
 	cp bin/diff-with-json bin/diff-with-json-darwin-x86_64
+	sandbox-exec -f test.darwin-x86_64.sb bin/diff-with-json --help
 
 build_linux:
 	docker build -f Dockerfile.build.linux-x86_64 -t diff-with-json.build.linux-x86_64 .
@@ -25,13 +26,14 @@ build_linux_app:
 	crystal build --release -o bin/diff-with-json --link-flags '-static' bin/diff-with-json.cr
 
 clean: ## Clean
-	rm -f bin/diff-with-json bin/diff-with-json-darwin-x86_64 bin/diff-with-json-linux-x86_64
+	rm -f bin/diff-with-json bin/diff-with-json.o bin/diff-with-json-darwin-x86_64 bin/diff-with-json-linux-x86_64
 
 fix: ## Fix lint automatically
 	find bin src spec -type f -name '*.cr' -exec crystal tool format {} \;
 
 test: ## Test
 	shellcheck -e SC2046,SC2148 Makefile
+	find . -name '*.sh' -exec shellcheck {} \;
 	find bin src spec -type f -name '*.cr' -exec crystal tool format --check {} \;
 	crystal deps
 	crystal spec

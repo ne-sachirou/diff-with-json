@@ -7,7 +7,6 @@ diff with JSON structure.
 Installation
 --
 ### Pre-requiments
-- [Crystal](https://crystal-lang.org/)
 - diff or [colordiff](http://www.colordiff.org/)
 - [jq](https://stedolan.github.io/jq/)
 
