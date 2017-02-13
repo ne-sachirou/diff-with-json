@@ -44,6 +44,15 @@ Development
 ### Pre-requiments
 - [Crystal](https://crystal-lang.org/)
 
+Building for Linux
+
+- [Docker](https://www.docker.com/)
+
+Building for Mac OS X
+
+- Mac OS X
+- Xcode Command Line Tool
+
 ### Tests
 Run `make test` before commit.
 

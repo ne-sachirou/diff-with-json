@@ -5,7 +5,9 @@ help:
 
 build: ## Build a release binary
 	$(MAKE) build_linux
+ifeq ($(shell uname -s),Darwin)
 	$(MAKE) build_darwin
+endif
 	crystal eval 'require "ecr/macros";io=IO::Memory.new;ECR.embed "src/README.md.ecr",io;File.open("README.md","w"){|f|f.print io.to_s}'
 
 build_darwin:
@@ -18,7 +20,11 @@ build_darwin:
 build_linux:
 	docker build -f Dockerfile.build.linux-x86_64 -t diff-with-json.build.linux-x86_64 .
 	docker run -v $(shell pwd):/data diff-with-json.build.linux-x86_64 make build_linux_app
-	mv bin/diff-with-json bin/diff-with-json-linux-x86_64
+ifeq ($(shell uname -s),Linux)
+	cp bin/diff-with-json bin/diff-with-json-linux-x86_64
+else
+	mv bin/diff-with-json bin/diff-with-json-darwin-x86_64
+endif
 	docker build -f Dockerfile.test.linux-x86_64 -t diff-with-json.test.linux-x86_64 .
 	docker run diff-with-json.test.linux-x86_64 diff-with-json --help
 
@@ -33,7 +39,6 @@ fix: ## Fix lint automatically
 	find bin src spec -type f -name '*.cr' -exec crystal tool format {} \;
 
 test: ## Test
-	shellcheck -e SC2046,SC2148 Makefile
 	find . -name '*.sh' -exec shellcheck -s sh {} \;
 	find bin src spec -type f -name '*.cr' -exec crystal tool format --check {} \;
 	crystal deps
