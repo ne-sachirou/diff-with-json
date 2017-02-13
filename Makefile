@@ -1,4 +1,4 @@
-.PHONY: help build build_app fix test
+.PHONY: help build build_darwin build_linux build_linux_app clean fix test
 default: build
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .' $(MAKEFILE_LIST) | sort | awk -F ':.*?## ' '{printf "%s\t\t\t%s\n",$$1,$$2}'
@@ -12,6 +12,7 @@ build_darwin:
 	crystal deps --production
 	bash -eux build.darwin-x86_64.sh
 	cp bin/diff-with-json bin/diff-with-json-darwin-x86_64
+	otool -L bin/diff-with-json-darwin-x86_64
 	sandbox-exec -f test.darwin-x86_64.sb bin/diff-with-json --help
 
 build_linux:
@@ -33,7 +34,7 @@ fix: ## Fix lint automatically
 
 test: ## Test
 	shellcheck -e SC2046,SC2148 Makefile
-	find . -name '*.sh' -exec shellcheck {} \;
+	find . -name '*.sh' -exec shellcheck -s sh {} \;
 	find bin src spec -type f -name '*.cr' -exec crystal tool format --check {} \;
 	crystal deps
 	crystal spec
