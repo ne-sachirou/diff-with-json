@@ -17,24 +17,12 @@ Download a binary from [releases](https://github.com/ne-sachirou/diff-with-json/
 ```sh
 git clone --depth=1 git@github.com:ne-sachirou/diff-with-json.git
 cd diff-with-json
-make build
-cp bin/diff-with-json /usr/local/bin/
+make build install
 ```
 
 Usage
 --
 ```
-diff-with-json [OPTIONS] FILES...
-
-	diff with JSON structure.
-
-Example:
-	diff-with-json -L a.json -L b.json /tmp/a /tmp/b
-
-Options:
-    -u, --unified                    
-    -L LABEL, --label=LABEL          Use LABEL instead of file name.
-    -h, --help                       Output this help.
 ```
 
 Tips: Use with SVN. `svn diff --diff-cmd diff-with-json`

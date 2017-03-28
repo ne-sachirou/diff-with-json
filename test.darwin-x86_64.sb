@@ -1,6 +1,6 @@
 (version 1)
 (deny default)
-(allow process-exec* (regex #"bin/diff-with-json$"))
+(allow process-exec* (regex #"bin/diff-with-json-darwin-x86_64$"))
 (allow file-read-metadata
        (path "/usr/lib/libSystem.B.dylib")
        (path "/usr/lib/libiconv.2.dylib")
