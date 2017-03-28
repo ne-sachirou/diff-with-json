@@ -23,7 +23,7 @@ make build install
 Usage
 --
 ```
-<%= `bin/diff-with-json -h` -%>
+<%= `docker run --rm diff-with-json.test.linux-x86_64 diff-with-json --help`.strip %>
 ```
 
 Tips: Use with SVN. `svn diff --diff-cmd diff-with-json`
